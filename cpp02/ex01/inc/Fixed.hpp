@@ -1,6 +1,7 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
+# include <math.h>
 
 # define RESET "\033[0m"
 # define MAGENTA "\033[35m"
@@ -15,9 +16,17 @@ class Fixed {
         int getRawBits(void) const; //it cannot modify the object, so it is a const function (this)
         void setRawBits(int const raw);
         
+        //new
+        Fixed(const int val);
+        Fixed(const float val);
+        float toFloat(void) const;
+        int toInt(void) const;
+        
     private:
         int _fixedPointValue;
         static const int _fractionalBits = 8;
 };
+
+std::ostream& operator<<(std::ostream &out, const Fixed &src);
 
 #endif
