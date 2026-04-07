@@ -5,14 +5,14 @@ WHITE   = \e[1;37m
 DEFAULT = \e[0m
 
 ### VARIABLES ###
-NAME			= unnecessary_violence
+NAME			= Polymorphism
 
 CC				= c++
 CFLAGS			= -Wall -Wextra -Werror -g -std=c++98
 INCLUDE			= -I inc/
 
-### SOURCES ###
-SRCS	 		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+### RCS ###
+SRCS	 		= main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp
 SRC_PATH		= src/
 
 TOTAL_SRCS		= $(words $(SRCS))

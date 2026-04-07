@@ -20,7 +20,6 @@ FILES			= 0
 ### OBJECTS ###
 OBJS_PATH		= obj/
 OBJS 			= $(SRCS:%.cpp=$(OBJS_PATH)%.o)
-ALL_OBJ			= $(OBJS_PATH)*.o
 
 vpath %.cpp $(SRC_PATH)
 
