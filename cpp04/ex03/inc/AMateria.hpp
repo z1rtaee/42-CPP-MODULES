@@ -5,6 +5,12 @@
 # include <iomanip>
 # include "ICharacter.hpp"
 
+/*colors :D*/
+# define RESET "\033[0m"
+# define MAGENTA "\033[35m"
+# define BOLD "\e[1;37m"
+
+
 class AMateria {
     protected:
         std::string _type;
@@ -12,7 +18,7 @@ class AMateria {
     public:
         AMateria();
         AMateria(const AMateria &src);
-        AMateria(std::string const & type);
+        AMateria(std::string const &type);
         virtual ~AMateria();
 
         AMateria &operator=(const AMateria &obj);

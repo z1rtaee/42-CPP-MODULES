@@ -3,7 +3,13 @@
 
 # include <iostream>
 # include <iomanip>
-# include "AMateria.hpp"
+
+/*colors :D*/
+# define RESET "\033[0m"
+# define MAGENTA "\033[35m"
+# define BOLD "\e[1;37m"
+
+class AMateria;
 
 /*this class acts as an interface because it only contains virtual functions*/
 class ICharacter
