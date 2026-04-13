@@ -3,6 +3,8 @@
 
 #include "AMateria.hpp"
 
+/*ource can memorize prototypes and manufacture new materia by type.*/
+/*any materia source must implement these operations*/
 class IMateriaSource
 {
     public:

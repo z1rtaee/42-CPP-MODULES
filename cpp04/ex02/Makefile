@@ -5,7 +5,7 @@ WHITE   = \e[1;37m
 DEFAULT = \e[0m
 
 ### VARIABLES ###
-NAME			= Polymorphism
+NAME			= Abstract_Polymorphism
 
 CC				= c++
 CFLAGS			= -Wall -Wextra -Werror -g -std=c++98

@@ -12,6 +12,7 @@
 class AMateria;
 
 /*this class acts as an interface because it only contains virtual functions*/
+/*every class that is a character should implement these operations*/
 class ICharacter
 {
     public:

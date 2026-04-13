@@ -3,9 +3,7 @@
 AMateria::AMateria() : _type("") {
 }
 
-AMateria::AMateria(const AMateria &src) {
-    if (this != &src)
-        *this = src;
+AMateria::AMateria(const AMateria &src) : _type(src._type) {
 }
 
 AMateria::AMateria(std::string const &type) : _type(type) {
@@ -20,6 +18,7 @@ AMateria &AMateria::operator=(const AMateria &obj) {
 }
 
 void    AMateria::use(ICharacter &target) {
+    std::cout << BOLD << MAGENTA << "> neutral materia shimmers around " << target.getName() << RESET << std::endl;
     (void)target;
 }
 

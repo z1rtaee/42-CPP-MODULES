@@ -34,6 +34,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj) {
 MateriaSource::~MateriaSource() {
     for (int i = 0; i < 4; i++) {
         if (_memory[i]) {
+            std::cout << MAGENTA << ".* " << BOLD << "Forgetting learned materia in slot " << i << RESET << std::endl;
             delete _memory[i];
             _memory[i] = NULL;
         }
@@ -42,21 +43,28 @@ MateriaSource::~MateriaSource() {
 
 void    MateriaSource::learnMateria(AMateria *obj) {
     if (!obj) {
+        std::cout << BOLD << MAGENTA << "> MateriaSource cannot learn an empty spell" << RESET << std::endl;
         return;
     }
     for (int i = 0; i < 4; i++) {
         if (!_memory[i]) {
             _memory[i] = obj->clone();
+            std::cout << BOLD << MAGENTA << "> MateriaSource learned [" << obj->getType() << "] in slot " << i << RESET << std::endl;
+            delete obj;
             return;
         }
     }
+    std::cout << BOLD << MAGENTA << "> MateriaSource memory is full. [" << obj->getType() << "] is ignored" << RESET << std::endl;
+    delete obj;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type) {
     for (int i = 0; i < 4; i++) {
         if (_memory[i] && _memory[i]->getType() == type) {
+            std::cout << BOLD << MAGENTA << "> MateriaSource crafts a new [" << type << "] from slot " << i << RESET << std::endl;
             return _memory[i]->clone();
         }
     }
+    std::cout << BOLD << MAGENTA << "> MateriaSource does not know [" << type << "]" << RESET << std::endl;
     return 0; /* why can i do this*/
 }

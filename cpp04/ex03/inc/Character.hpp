@@ -8,7 +8,6 @@
 # define MAGENTA "\033[35m"
 # define BOLD "\e[1;37m"
 
-
 class Character : public ICharacter {
     public:
         Character();
@@ -35,7 +34,7 @@ class Character : public ICharacter {
         void clearInventory();
         void clearFloor();
         void copyFrom(const Character &src);
-        
+
 };
 
 #endif
