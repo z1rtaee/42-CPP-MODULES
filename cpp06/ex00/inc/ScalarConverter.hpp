@@ -6,8 +6,10 @@
 # include <cctype>
 # include <cstdlib>
 # include <cmath>
+# include <limits>
 # include <iomanip>
 # include <sstream>
+# include <cfloat>
 
 # define RESET "\033[0m"
 # define MAGENTA "\033[35m"

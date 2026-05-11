@@ -5,14 +5,14 @@ WHITE   = \e[1;37m
 DEFAULT = \e[0m
 
 ### VARIABLES ###
-NAME			= ScalarConverter
+NAME			= Serialization
 
 CC				= c++
 CFLAGS			= -Wall -Wextra -Werror -g -std=c++98
 INCLUDE			= -I inc/
 
 ### RCS ###
-SRCS	 		= main.cpp ScalarConverter.cpp
+SRCS	 		= main.cpp Serializer.cpp
 SRC_PATH		= src/
 
 TOTAL_SRCS		= $(words $(SRCS))
