@@ -1,66 +1,57 @@
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-
-void    *safe_memcpy(void *dest, const void *src, size_t n) {
-    if (!dest || !src)
-        return NULL;
-    unsigned char *d = (unsigned char *)dest;
-    const unsigned char *s = (const unsigned char *)src;
-    size_t i = 0;
-    /*for an optimized and safer version of this function
-    I would also check for the case where the source is
-    shorter than the destination to avoid overlaps but since
-    this is a memmove behaviour i did not add it*/
-    while (i < n) {
-        d[i] = s[i];
-        i++;
-    }
-    return dest;
-}
-
-/*
-int	main(void)
-{
-	char *src = "Ola";
-	char dest[20];
-	printf("My Func : %s\n", (char *)safe_memcpy(dest, src, 3));
-	printf("My Func : %s\n", (char *)memcpy(dest, src, 3));
-	return (0);
-}
-*/
-
 #include <iostream>
-#include <cstring>
-
-void* safe_memcpy(void* dest, const void* src, size_t n) {
-    if (!dest && !src)
-        return nullptr;
-
-    unsigned char* d = static_cast<unsigned char*>(dest);
-    const unsigned char* s = static_cast<const unsigned char*>(src);
-
-    size_t i = 0;
-    while (i < n) {
-        d[i] = s[i];
-        i++;
-    }
-    return dest;
-}
+#include "Array.hpp"
 
 int main() {
-    const char* src = "Ola";
-    char dest[20];
+	try {
+		Array<int> empty;
+		std::cout << "empty size: " << empty.size() << std::endl;
+		try {
+			(void)empty[0];
+		} catch (const std::exception &e) {
+			std::cout << "caught exception for empty[0]: " << e.what() << std::endl;
+		}
 
-    safe_memcpy(dest, src, 3);
-    dest[3] = '\0'; // null-terminate for printing
+		Array<int> a(5);
+		for (unsigned int i = 0; i < a.size(); ++i)
+			a[i] = i * 2;
+		std::cout << "a: ";
+		for (unsigned int i = 0; i < a.size(); ++i)
+			std::cout << a[i] << " ";
+		std::cout << std::endl;
 
-    std::cout << "My Func : " << dest << std::endl;
+		Array<int> b(a); // copy constructor
+		a[0] = 42;
+		std::cout << "after modifying a[0]=42 -> b[0] (should be original 0): " << b[0] << std::endl;
 
-    std::memcpy(dest, src, 3);
-    dest[3] = '\0';
+		Array<int> c;
+		c = a; // assignment
+		c[1] = 99;
+		std::cout << "a[1] (should be unchanged): " << a[1] << ", c[1]: " << c[1] << std::endl;
 
-    std::cout << "std::memcpy : " << dest << std::endl;
+		Array<std::string> s(3);
+		s[0] = "hello";
+		s[1] = "world";
+		s[2] = "!";
+		std::cout << "strings: ";
+		for (unsigned int i = 0; i < s.size(); ++i)
+			std::cout << s[i] << " ";
+		std::cout << std::endl;
 
-    return 0;
+		Array<int> zeros(3);
+		std::cout << "zeros: ";
+		for (unsigned int i = 0; i < zeros.size(); ++i)
+			std::cout << zeros[i] << " ";
+		std::cout << std::endl;
+
+		try {
+			std::cout << a[100] << std::endl;
+		} catch (const std::exception &e) {
+			std::cout << "caught exception for out-of-range access: " << e.what() << std::endl;
+		}
+
+	} catch (const std::exception &e) {
+		std::cerr << "Unexpected exception: " << e.what() << std::endl;
+		return 1;
+	}
+	return 0;
 }
